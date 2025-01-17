@@ -1,63 +1,66 @@
 import React from 'react'
-import classNames from 'classnames';
-const you_may_also_like = ({Trending_Data}) => {
-  const rupee = '₹';
-  const dollar = '$';
-  return (
-    <div >
-    <div>
-      <div className='font-bold font-sans '>You May Also Like</div>
-      <div className='flex  overflow-x-auto gap-3 '>
-        {Trending_Data.map((value) => (<div className='min-w-[8rem] flex justify-center items-center border-neutral-200 rounded-md border-2  h-[5rem] '>
-      <div>    <div className='flex  space-x-2'>
-            <img className='h-4 w-4 rounded-full' src={value.item.small}></img>
-            <div className='text-[0.4rem] sm:text-[0.6rem]'>{value.item.symbol}</div>
-            <div className={classNames({
-              'bg-red-50': value.item.data.price_change_percentage_24h.usd < 0,
-              'bg-emerald-50': value.item.data.price_change_percentage_24h.usd > 0,
-              'flex': true,
-              'items-center': true,
-              'justify-center': true,
-              'text-[0.3rem]': true,
-              'sm:text-[0.6rem]': true,
-              'rounded-md': true,
-              'min-w-7': true,
-              'h-2': true,
-              'sm:w-10': true,
-              'sm:h-4': true,
-              'text-red-400': value.item.data.price_change_percentage_24h.usd < 0,
-              'text-emerald-400': value.item.data.price_change_percentage_24h.usd > 0,
-            })}
 
-            >
-              {value.item.data.price_change_percentage_24h.usd < 0 ? <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="10.033"
-                height="5"
-                viewBox="0 0 10.033 5"
-                class="fill-current text-red-400 mr-1"
-              >
-                <polygon points="5.016 0 0 0.003 2.506 2.5 5.016 5 7.525 2.5 10.033 0.003 5.016 0" />
-              </svg> : <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="10.033"
-                height="5"
-                viewBox="0 0 10.033 5"
-                class="fill-current text-emerald-400 mr-1"
-              >
-                <polygon points="5.016 0 2.506 2.5 0 4.999 5.016 5 10.033 4.999 7.525 2.5 5.016 0" />
-              </svg>
-              }
-              {parseFloat(Math.abs(Number(value.item.data.price_change_percentage_24h.usd )).toFixed(2))}%
+const overview_fundamental_analysis = ({ Btc_Data }) => {
+    const rupee = '₹';
+    const dollar = '$';
+    return (
+
+        <div className=''>
+            <div className='flex flex-wrap mt-7 bg-gray-100'>
+                <overview className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium '>Overview</overview>
+                <fundamentals className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>Fundamentals</fundamentals>
+                <newsinsights className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>News Insights</newsinsights>
+                <sentiments className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>Sentiments</sentiments>
+                <team className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>Team</team>
+                <technicals className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>Technicals</technicals>
+                <tokenomics className='mx-2 text-[0.75rem] text-zinc-700 font-sans font-medium'>Tokenomics</tokenomics>
             </div>
-          </div>
-          <div className='text-left font-sans font-medium text-[0.6rem] sm:text-[0.7rem]'>{dollar}{parseFloat(Number(value.item.data.price).toFixed(2))}</div>
-          <img className='w-full h-4 sm:h-7' src={value.item.data.sparkline} ></img></div>
-        </div>))}
-      </div>
-    </div>
-  </div>
-  )
+            <hr className="border-t border-gray-300 my-4 " />
+            <div className='bg-white p-8 rounded-md'>
+                <h1 className='text-gray-600 font-sans font-medium text-left mb-5'>Fundamentals</h1>
+                <div className=' grid sm:grid-cols-2 gap-8 xs:grid-cols-1  text-[0.75rem] sm:text-[0.6rem]'>
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Bitcoin Price</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.current_price}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Trading Volume</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.total_volume}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Market Cap Rank</h2><h2 className='font-semibold font-sans'>#{Btc_Data.market_cap_rank}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >24h High/ 24h Low</h2><h2 className='font-semibold font-sans'>{dollar}{parseFloat(Math.abs(Number(Btc_Data.high_24h )).toFixed(2))}/{dollar}{parseFloat(Math.abs(Number(Btc_Data.low_24h )).toFixed(2))}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500'>All-Time-Low</h2><h2 className='font-semibold font-sans'>{dollar}{parseFloat(Math.abs(Number(Btc_Data.atl )).toFixed(2))}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Market Cap</h2 ><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.market_cap}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Market Cap Dominance</h2><h2 className='font-semibold font-sans'>{parseFloat(Math.abs(Number(Btc_Data.market_cap/1000000000000 )).toFixed(2))}%</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+                    <div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Volume/Market cap</h2><h2 className='font-semibold font-sans'>{Btc_Data.market_cap}</h2></div>
+                        <hr className="border-t border-gray-300 my-4" />
+                    </div>
+                    <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >All-Time High</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.ath}</h2></div>
+                </div>
+            </div>
+
+        </div>
+    )
 }
 
-export default you_may_also_like;
+export default overview_fundamental_analysis;
