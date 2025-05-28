@@ -7,7 +7,7 @@ import About_Coin from './coindetails.jsx';
 import Tokenomics from './tokenomics.jsx';
 import Team from './team.jsx';
 import Chart_and_other_details from './chart_and_other_details.jsx';
-import You_may_also_like from './you_may_also_like.jsx';
+import You_may_also_like from './You_may_also_like.jsx';
 import Trending_coins from './trending_coins.jsx';
 const home_Page = () => {
 
