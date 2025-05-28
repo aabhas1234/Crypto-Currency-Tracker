@@ -18,7 +18,7 @@ const overview_fundamental_analysis = ({ Btc_Data }) => {
             <hr className="border-t border-gray-300 my-4 " />
             <div className='bg-white p-8 rounded-md'>
                 <h1 className='text-gray-600 font-sans font-medium text-left mb-5'>Fundamentals</h1>
-                <div className=' grid sm:grid-cols-2 gap-8 xs:grid-cols-1  text-[0.75rem]'>
+                <div className=' grid sm:grid-cols-2 gap-8 xs:grid-cols-1  text-[0.75rem] sm:text-[0.6rem]'>
                     <div>
                         <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Bitcoin Price</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.current_price}</h2></div>
                         <hr className="border-t border-gray-300 my-4" />
@@ -35,11 +35,11 @@ const overview_fundamental_analysis = ({ Btc_Data }) => {
                     </div>
 
                     <div>
-                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >24h High/ 24h Low</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.high_24h}/{dollar}{Btc_Data.low_24h}</h2></div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >24h High/ 24h Low</h2><h2 className='font-semibold font-sans'>{dollar}{parseFloat(Math.abs(Number(Btc_Data.high_24h )).toFixed(2))}/{dollar}{parseFloat(Math.abs(Number(Btc_Data.low_24h )).toFixed(2))}</h2></div>
                         <hr className="border-t border-gray-300 my-4" />
                     </div>
                     <div>
-                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500'>All-Time-Low</h2><h2 className='font-semibold font-sans'>{dollar}{Btc_Data.atl}</h2></div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500'>All-Time-Low</h2><h2 className='font-semibold font-sans'>{dollar}{parseFloat(Math.abs(Number(Btc_Data.atl )).toFixed(2))}</h2></div>
                         <hr className="border-t border-gray-300 my-4" />
                     </div>
                     <div>
@@ -48,7 +48,7 @@ const overview_fundamental_analysis = ({ Btc_Data }) => {
                     </div>
 
                     <div>
-                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Market Cap Dominance</h2><h2 className='font-semibold font-sans'>{Btc_Data.market_cap/1000000000000}%</h2></div>
+                        <div className='flex flex-wrap justify-between'><h2 className='text-slate-500' >Market Cap Dominance</h2><h2 className='font-semibold font-sans'>{parseFloat(Math.abs(Number(Btc_Data.market_cap/1000000000000 )).toFixed(2))}%</h2></div>
                         <hr className="border-t border-gray-300 my-4" />
                     </div>
                     <div>
